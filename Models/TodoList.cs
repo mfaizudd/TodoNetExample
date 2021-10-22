@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TodoNet.Models
+namespace TodoNetExample.Models
 {
     public class TodoList
     {

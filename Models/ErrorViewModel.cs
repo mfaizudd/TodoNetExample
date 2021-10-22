@@ -1,6 +1,6 @@
 using System;
 
-namespace TodoNet.Models
+namespace TodoNetExample.Models
 {
     public class ErrorViewModel
     {

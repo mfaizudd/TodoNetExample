@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TodoNet.Data;
-using TodoNet.Models;
+using TodoNetExample.Data;
+using TodoNetExample.Models;
 
-namespace TodoNet.Controllers
+namespace TodoNetExample.Controllers
 {
     public class HomeController : Controller
     {

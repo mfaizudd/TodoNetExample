@@ -9,9 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using TodoNet.Data;
+using TodoNetExample.Data;
 
-namespace TodoNet
+namespace TodoNetExample
 {
     public class Startup
     {

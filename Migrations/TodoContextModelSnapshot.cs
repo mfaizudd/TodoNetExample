@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TodoNet.Data;
+using TodoNetExample.Data;
 
-namespace TodoNet.Migrations
+namespace TodoNetExample.Migrations
 {
     [DbContext(typeof(TodoContext))]
     partial class TodoContextModelSnapshot : ModelSnapshot

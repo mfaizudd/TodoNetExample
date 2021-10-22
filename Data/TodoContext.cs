@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TodoNet.Models;
+using TodoNetExample.Models;
 
-namespace TodoNet.Data
+namespace TodoNetExample.Data
 {
     public class TodoContext : DbContext
     {

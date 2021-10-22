@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace TodoNet.Migrations
+namespace TodoNetExample.Migrations
 {
     public partial class Initial : Migration
     {
