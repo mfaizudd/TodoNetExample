@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using TodoNetExample.Data;
+using TodoNetExample.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace TodoNetExample
 {
@@ -29,6 +31,11 @@ namespace TodoNetExample
             services.AddDbContext<TodoContext>(options => {
                 options.UseNpgsql(Configuration.GetConnectionString("Dev"));
             });
+            services
+                .AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<TodoContext>()
+                .AddDefaultTokenProviders();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +56,8 @@ namespace TodoNetExample
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -56,6 +65,7 @@ namespace TodoNetExample
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
