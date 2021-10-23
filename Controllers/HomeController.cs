@@ -23,8 +23,9 @@ namespace TodoNetExample.Controllers
 
         public IActionResult Index()
         {
-            
-            return View();
+            var user = _context.Users.Find(0);
+            var todolists = user.TodoLists;
+            return View(todolists);
         }
 
         public IActionResult Privacy()
