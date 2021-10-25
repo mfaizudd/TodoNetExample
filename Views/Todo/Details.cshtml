@@ -23,6 +23,13 @@
             @Html.DisplayFor(model => model.UserId)
         </dd>
     </dl>
+    <h4>Items</h4>
+    <ul>
+    @foreach (var item in Model.TodoItems)
+    {
+        <li>@item.Name</li>
+    }
+    </ul>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

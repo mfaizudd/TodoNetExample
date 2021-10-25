@@ -7,6 +7,6 @@ namespace TodoNetExample.Models
     {
         public string Name { get; set; }
 
-        public List<TodoList> TodoLists { get; set; }
+        public virtual List<TodoList> TodoLists { get; set; }
     }
 }

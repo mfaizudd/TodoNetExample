@@ -30,6 +30,7 @@ namespace TodoNetExample
             services.AddControllersWithViews();
             services.AddDbContext<TodoContext>(options => {
                 options.UseNpgsql(Configuration.GetConnectionString("Dev"));
+                options.UseLazyLoadingProxies();
             });
             services
                 .AddDefaultIdentity<User>()

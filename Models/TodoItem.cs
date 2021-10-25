@@ -6,6 +6,6 @@ namespace TodoNetExample.Models
         public string Name { get; set; }
 
         public int TodoListId { get; set; }
-        public TodoList TodoList { get; set; }
+        public virtual TodoList TodoList { get; set; }
     }
 }
