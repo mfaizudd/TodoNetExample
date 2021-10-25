@@ -183,15 +183,12 @@ namespace TodoNetExample.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("TodoLists");
                 });
@@ -329,7 +326,7 @@ namespace TodoNetExample.Migrations
                 {
                     b.HasOne("TodoNetExample.Models.User", "User")
                         .WithMany("TodoLists")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
