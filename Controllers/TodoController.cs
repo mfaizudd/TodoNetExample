@@ -13,7 +13,7 @@ using TodoNetExample.Models;
 namespace TodoNetExample.Controllers
 {
     
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class TodoController : Controller
     {
         private readonly TodoContext _context;

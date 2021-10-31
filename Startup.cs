@@ -34,6 +34,7 @@ namespace TodoNetExample
             });
             services
                 .AddDefaultIdentity<User>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TodoContext>()
                 .AddDefaultTokenProviders();
             services.AddRazorPages();
