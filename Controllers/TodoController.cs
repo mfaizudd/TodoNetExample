@@ -42,6 +42,12 @@ namespace TodoNetExample.Controllers
 
             var todoList = await _context.TodoLists
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            // Check ownership
+            var user = await _userManager.GetUserAsync(User);
+            if (user.Id != todoList.UserId)
+                return Unauthorized();
+
             if (todoList == null)
             {
                 return NotFound();
