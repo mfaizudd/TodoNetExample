@@ -19,17 +19,27 @@ namespace TodoNetExample.Data
             base.OnModelCreating(builder);
             builder.Entity<IdentityRole>()
                 .HasData(new [] {
-                    new IdentityRole("Admin"),
-                    new IdentityRole("User")
+                    new IdentityRole 
+                    {
+                        Id = "2ec3739c-0f45-4357-b178-7f797858d10f",
+                        Name = "Admin",
+                        NormalizedName = "ADMIN"
+                    },
+                    new IdentityRole
+                    {
+                        Id = "153109d6-ef68-46c3-a8ef-491a85c55bfa",
+                        Name = "User",
+                        NormalizedName = "USER"
+                    }
                 });
 
             var hasher = new PasswordHasher<User>();
             var admin = new User
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "681d0641-bed3-452b-bdfe-cb65572a8e59",
                 Name = "Faizud",
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM",
                 Email = "admin@admin.com",
                 NormalizedEmail = "ADMIN@ADMIN.COM",
                 EmailConfirmed = true
@@ -37,6 +47,13 @@ namespace TodoNetExample.Data
             admin.PasswordHash = hasher.HashPassword(admin, "Test123!");
             builder.Entity<User>()
                 .HasData(admin);
+            
+            builder.Entity<IdentityUserRole<string>>()
+                .HasData(new IdentityUserRole<string>
+                {
+                    RoleId = "2ec3739c-0f45-4357-b178-7f797858d10f",
+                    UserId = "681d0641-bed3-452b-bdfe-cb65572a8e59"
+                });
         }
 
     }

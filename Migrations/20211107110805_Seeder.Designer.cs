@@ -10,7 +10,7 @@ using TodoNetExample.Data;
 namespace TodoNetExample.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    [Migration("20211031150210_Seeder")]
+    [Migration("20211107110805_Seeder")]
     partial class Seeder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,15 +49,17 @@ namespace TodoNetExample.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "44a29439-e9a2-4771-b68a-e35ed3fd91ca",
-                            ConcurrencyStamp = "1438ff81-c9a2-4c7d-b119-66366008b874",
-                            Name = "Admin"
+                            Id = "2ec3739c-0f45-4357-b178-7f797858d10f",
+                            ConcurrencyStamp = "b67e4a95-7d86-4f21-a8a1-765027850a80",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d94d875e-27dc-4aa9-91a5-2f42f4e8e18e",
-                            ConcurrencyStamp = "11709aef-5c07-430d-b9f5-d7c267b03fcb",
-                            Name = "User"
+                            Id = "153109d6-ef68-46c3-a8ef-491a85c55bfa",
+                            ConcurrencyStamp = "e4499df5-13db-4f01-a4b7-82ec2e32950f",
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 
@@ -146,6 +148,13 @@ namespace TodoNetExample.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "681d0641-bed3-452b-bdfe-cb65572a8e59",
+                            RoleId = "2ec3739c-0f45-4357-b178-7f797858d10f"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -175,6 +184,9 @@ namespace TodoNetExample.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Done")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -281,20 +293,20 @@ namespace TodoNetExample.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c802c431-a594-47c3-bb6a-ee28700656f7",
+                            Id = "681d0641-bed3-452b-bdfe-cb65572a8e59",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d85ed058-d523-47a4-b4cd-42dc327f2aef",
+                            ConcurrencyStamp = "bd0951e9-e6c7-4f08-b9e1-11dc519682f8",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Faizud",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL4qheF3oL22E9BaBg2gbT1PthrS++0/6m9vz4QtlHFVJvfMTJ3mAZiuju8MsWFvyA==",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFc1qYDPzPcQyUCJAlgNm33VY1aOFCx9rKlWGt4kyGkJGhdIn+sJJFXHiZR4Vi+ZoQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "22bf3b47-c3ad-497e-8cd8-fcdb5f594b33",
+                            SecurityStamp = "81a0eaf1-b7a1-41d0-8bb7-af103d441e82",
                             TwoFactorEnabled = false,
-                            UserName = "admin"
+                            UserName = "admin@admin.com"
                         });
                 });
 
