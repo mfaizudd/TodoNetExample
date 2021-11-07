@@ -69,6 +69,20 @@ namespace TodoNetExample.Controllers
             return View(todoItem);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateItemOnList(int listId, [Bind(Prefix = "AddItem")] TodoItem todoItem)
+        {
+            if (ModelState.IsValid)
+            {
+                todoItem.TodoListId = listId;
+                _context.Add(todoItem);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Todo", new { id = listId });
+            }
+            return RedirectToAction("Details", "Todo", new { id = listId });
+        }
+
         // GET: TodoItem/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

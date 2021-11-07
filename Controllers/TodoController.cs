@@ -12,7 +12,7 @@ using TodoNetExample.Models;
 
 namespace TodoNetExample.Controllers
 {
-    
+
     [Authorize(Roles = "Admin")]
     public class TodoController : Controller
     {
@@ -53,7 +53,12 @@ namespace TodoNetExample.Controllers
                 return NotFound();
             }
 
-            return View(todoList);
+            var vm = new TodoDetailsViewModel
+            {
+                List = todoList
+            };
+
+            return View(vm);
         }
 
         // GET: Todo/Create
@@ -158,6 +163,24 @@ namespace TodoNetExample.Controllers
             _context.TodoLists.Remove(todoList);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet("[controller]/{id}/[action]/{itemId}")]
+        public async Task<IActionResult> DeleteItem(int id, int itemId)
+        {
+            var todoList = await _context.TodoLists.FindAsync(id);
+            var item = todoList.TodoItems.Find(x => x.Id == itemId);
+
+            // Check ownership
+            var user = await _userManager.GetUserAsync(User);
+            if (user.Id != todoList.UserId)
+                return Unauthorized();
+            
+            todoList.TodoItems.Remove(item);
+            _context.TodoLists.Update(todoList);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { id = id });
         }
 
         private bool TodoListExists(int id)
