@@ -28,7 +28,8 @@ namespace TodoNetExample.Controllers
         // GET: Todo
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TodoLists.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+            return View(await _context.TodoLists.Where(x => x.User == user).ToListAsync());
         }
 
         // GET: Todo/Details/5
