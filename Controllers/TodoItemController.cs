@@ -122,6 +122,33 @@ namespace TodoNetExample.Controllers
             return View(todoItem);
         }
 
+        public async Task<IActionResult> ToggleDone(int id)
+        {
+            var todoItem = _context.TodoItems.Find(id);
+            if (todoItem == null)
+                return NotFound();
+
+            try
+            {
+                todoItem.Done = !todoItem.Done;
+
+                _context.Update(todoItem);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TodoItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", "Todo", new { id = todoItem.TodoListId });
+        }
+
         // GET: TodoItem/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
