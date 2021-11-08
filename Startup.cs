@@ -29,7 +29,7 @@ namespace TodoNetExample
         {
             services.AddControllersWithViews();
             services.AddDbContext<TodoContext>(options => {
-                options.UseNpgsql(Configuration.GetConnectionString("Dev"));
+                options.UseNpgsql(Configuration["ConnectionStrings:Dev"]);
                 options.UseLazyLoadingProxies();
             });
             services
