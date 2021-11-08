@@ -72,17 +72,21 @@ namespace TodoNetExample.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] TodoList todoList)
+        public async Task<IActionResult> Create([Bind("Id,Name")] CreateTodoListViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                todoList.User = user;
+                var todoList = new TodoList
+                {
+                    Name = model.Name,
+                    User = user
+                };
                 _context.Add(todoList);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(todoList);
+            return View(model);
         }
 
         // GET: Todo/Edit/5
