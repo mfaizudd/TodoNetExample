@@ -14,6 +14,7 @@ using TodoNetExample.Models;
 namespace TodoNetExample.Controllers
 {
     [Route("[controller]/[action]")]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly ILogger<ProfileController> _logger;
